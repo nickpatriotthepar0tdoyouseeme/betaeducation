@@ -4,4 +4,3 @@ flask-socketio>=5.0
 python-dotenv>=0.19
 pusher==3.3.3
 werkzeug>=2.0
-sqlite3 
