@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #2C3E50;
+            color: white;
+            position: fixed;
+            height: 100%;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+        .sidebar p {
+            margin: 15px 0;
+            text-align: center;
+        }
+        .sidebar input,
+        .sidebar textarea {
+            width: calc(100% - 10px);
+            margin: 10px auto;
+            display: block;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        .sidebar button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .sidebar button:hover {
+            background-color: #45a049;
+        }
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+        .badges-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .badges-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .badge {
+            font-size: 24px;
+            margin: 10px;
+            color: #ccc;
+        }
+        .badge.unlocked {
+            color: #ffd700; /* Gold for unlocked badges */
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <img id="profile-picture" src="default.jpg" alt="Profile Picture">
+        <button id="change-picture">Change Picture</button>
+        <p><strong>Username:</strong> <span id="username">Guest</span></p>
+        <p><strong>Email:</strong> <span id="email">No email provided</span></p>
+        <textarea id="bio" placeholder="Write your bio..."></textarea>
+        <input type="text" id="grade" placeholder="Enter your grade">
+        <button id="save-info">Save Info</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="badges-container" id="badges">
+            <h2>Your Badges</h2>
+            <!-- Badges will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script>
+        
+     document.getElementById("change-picture").addEventListener("click", function () {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+
+    fileInput.addEventListener("change", async function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            // Preview the selected image
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("profile-picture").src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+
+            // Upload the file to the backend
+            const formData = new FormData();
+            formData.append("profile_picture", file);
+
+            try {
+                const response = await fetch('/update_profile_picture', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    // Update the displayed profile picture
+                    document.getElementById("profile-picture").src = result.new_picture_path;
+                    alert("Profile picture updated successfully!");
+                } else {
+                    console.error("Failed to update profile picture:", result.error);
+                    alert(result.error || "Error updating profile picture.");
+                }
+            } catch (error) {
+                console.error("Error uploading profile picture:", error);
+                alert("Something went wrong. Please try again.");
+            }
+        }
+    });
+
+    fileInput.click();
+});
+
+
+        // Update sidebar information
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username') || 'Guest';
+        const email = urlParams.get('email') || 'No email provided';
+        const profilePicture = urlParams.get('profile_picture') || 'default.jpg';
+
+        document.getElementById('username').textContent = username;
+        document.getElementById('email').textContent = email;
+        document.getElementById('profile-picture').src = profilePicture;
+
+        // Handle saving bio and grade
+        document.getElementById('save-info').addEventListener('click', () => {
+            const bio = document.getElementById('bio').value;
+            const grade = document.getElementById('grade').value;
+            alert(`Saved Bio: ${bio}\nSaved Grade: ${grade}`);
+        });
+
+        // Load Badges
+        async function loadBadges() {
+            const badgesContainer = document.getElementById('badges');
+
+            try {
+                const response = await fetch('/badges'); // Fetch badges from the backend
+                if (!response.ok) {
+                    throw new Error('Failed to fetch badges');
+                }
+                const data = await response.json();
+                const userBadges = data.badges || [];
+
+                const badgeCriteria = [
+                    { name: '1 Day', icon: 'fa-calendar-day' },
+                    { name: '1 Week', icon: 'fa-calendar-week' },
+                    { name: '2 Weeks', icon: 'fa-calendar-alt' },
+                    { name: '3 Weeks', icon: 'fa-calendar-check' },
+                    { name: '1 Month', icon: 'fa-calendar' },
+                    { name: '6 Months', icon: 'fa-star-half-alt' },
+                    { name: '1 Year', icon: 'fa-star' },
+                    { name: '2 Years', icon: 'fa-award' },
+                ];
+
+                // Clear existing badges
+                badgesContainer.innerHTML = '<h2>Your Badges</h2>';
+
+                badgeCriteria.forEach(badge => {
+                    const badgeElement = document.createElement('i');
+                    badgeElement.className = `badge fas ${badge.icon} ${userBadges.includes(badge.name) ? 'unlocked' : ''}`;
+                    badgeElement.title = badge.name;
+                    badgesContainer.appendChild(badgeElement);
+                });
+            } catch (error) {
+                console.error('Error fetching badges:', error);
+            }
+        }
+
+        // Load badges on page load
+        document.addEventListener('DOMContentLoaded', loadBadges);
+    </script>
+
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

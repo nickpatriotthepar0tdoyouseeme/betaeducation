@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Player</title>
+    
+    <!-- Importing Farsi Font (Vazir) -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@latest/dist/font-face.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1b1b1b;
+            font-family: 'Vazir', sans-serif;
+        }
+
+        .video-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.6);
+            background-color: #222;
+        }
+
+        /* Video Styling */
+        video {
+            width: 100%;
+            display: block;
+            border-bottom: 3px solid #444;
+        }
+
+        /* Play/Pause Button Styling */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 87, 34, 0.8);
+            color: #fff;
+            border: none;
+            font-size: 32px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .play-button:hover {
+            background-color: rgba(255, 87, 34, 1);
+        }
+
+        /* Title Styling (positioned below the video) */
+        .video-title {
+            text-align: center;
+            color: #f7f7f7;
+            font-size: 24px;
+            padding: 15px 0;
+            font-family: 'Vazir', sans-serif;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Video element with a sample video source -->
+        <video id="video" src="https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_10mb.mp4"></video>
+
+       
+        <!-- Play/Pause Button -->
+        <button class="play-button" onclick="togglePlayPause()">▶️</button>
+
+        <!-- Title Below the Video -->
+        <div class="video-title">مبانی زیست شناسی</div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const playButton = document.querySelector('.play-button');
+
+        // Toggle Play/Pause Functionality
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                playButton.textContent = '⏸️'; // Change to pause icon
+            } else {
+                video.pause();
+                playButton.textContent = '▶️'; // Change to play icon
+            }
+        }
+    </script>
+</body>
+</html>

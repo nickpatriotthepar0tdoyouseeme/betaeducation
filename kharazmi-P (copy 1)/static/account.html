@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <form method="POST" action="/">
+
+</head>
+<body>
+    <div class="form-container">
+        <h2>Login / Sign Up</h2>
+        <form method="POST" action="/">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="button-group">
+              <button type="submit" name="action" value="signup">Sign Up</button>
+<button type="submit" name="action" value="login">Login</button>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+    <style>/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    text-align: left;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    width: 48%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+button[type="submit"]:focus {
+    outline: none;
+}
+
+</style>
+</body>
+<style>
+       
+
+        .navbar {
+            background-color: black;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: purple;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+    </style>
+  <div class="results" id="resultsContainer"></div>  
+
+    <div class="navbar">
+    
+    <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
+    <a href="page.html"><i class="fas fa-home"></i> Main Page</a>
+    <a href="+blog.html"><i class="fas fa-plus"></i> Add Blog</a>
+    <a href="course.html"><i class="fas fa-pencil-alt"></i> Online Courses</a>
+    <a href="account.html"><i class="fas fa-id-card"></i> Account</a>
+    <a href="exam.html"><i class="fas fa-book"></i> Exams and Books</a>
+    <a href="notepad.html"><i class="fas fa-clipboard"></i> Notepad</a>
+</div>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+   
+      
+     
+        </div>
+ <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+        
+    </div> 
+</html>

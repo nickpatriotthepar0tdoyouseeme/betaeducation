@@ -1,0 +1,203 @@
+<html>
+
+    
+    <style>
+        body {
+	background: #000;
+}
+svg {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 150px;
+	width: 150px;
+}
+
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.cdnfonts.com/css/proclamate");
+@import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Satisfy&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  width: 100%;
+  background: radial-gradient(#480d35, #17151d);
+  display: grid;
+  place-items: center;
+}
+h1 {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  font-size: 7rem;
+  letter-spacing: -0.3rem;
+  z-index: 1;
+}
+h1 span {
+  margin: 0 auto;
+  margin-left: 0.3em;
+  display: inline-block;
+  position: relative;
+}
+h1 span:before {
+  content: "";
+  position: absolute;
+  top: -0.2em;
+  left: -0.2em;
+  width: 100%;
+  height: 100%;
+  padding: 0.2em;
+  z-index: -1;
+}
+h1 span:nth-child(1) {
+  font-family: "Proclamate Light", sans-serif;
+  text-transform: lowercase;
+  color: #ffc863;
+}
+h1 span:nth-child(1)::before {
+  background: #332929;
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 83%);
+}
+h1 span:nth-child(2) {
+  font-style: italic;
+  font-family: "Playfair Display", serif;
+  color: #023020;
+  text-shadow: 0.02em 0.02em 0 #a52a2a, 0.03em 0.03em 0 #a52a2a;
+}
+h1 span:nth-child(2)::before {
+  background: #f5deb3;
+}
+h1 span:nth-child(3) {
+  font-family: "Satisfy", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: #28282B;
+}
+h1 span:nth-child(3)::before {
+  background: #a52a2a;
+  clip-path: polygon(20% 0%, 99% 0, 100% 100%, 0% 100%);
+}
+h1 span:nth-child(4) {
+  font-family: "Love Ya Like A Sister", cursive;
+  color: #22232e;
+}
+h1 span:nth-child(4)::before {
+  background-image: radial-gradient(rgba(0, 194, 203, 0.7) 3px, transparent 3px);
+  background-color: #e0ffff;
+  background-size: 10px 10px;
+  clip-path: polygon(20% 0%, 99% 0, 100% 100%, 0% 100%);
+}
+h1 span:nth-child(5) {
+  font-family: "Poppins", serif;
+  color: #00c2cb;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 0.07em rgba(237, 10, 139, 0.7);
+}
+h1 span:nth-child(5)::before {
+  background: rgba(0, 194, 203, 0.7);
+  clip-path: polygon(0 24%, 100% 20%, 100% 86%, 0 82%);
+}
+
+    /* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 50px;
+  aspect-ratio: 2;
+  border: 10px solid #000;
+  box-sizing: border-box;
+  background: 
+    radial-gradient(farthest-side,#fff 98%,#0000) left/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) left/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) center/20px 20px,
+    radial-gradient(farthest-side,#fff 98%,#0000) right/20px 20px,
+    #000;
+  background-repeat: no-repeat;
+  filter: blur(4px) contrast(10);
+  animation: l14 1s infinite;
+}
+@keyframes l14 {
+  100%  {background-position:right,left,center,right}
+}
+    </style>
+    <svg viewBox="0 0 100 100">
+	<g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+		<!-- left line -->
+		<path d="M 21 40 V 59">
+			<animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      values="0 21 59; 180 21 59"
+      dur="2s"
+      repeatCount="indefinite" />
+		</path>
+		<!-- right line -->
+		<path d="M 79 40 V 59">
+			<animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      values="0 79 59; -180 79 59"
+      dur="2s"
+      repeatCount="indefinite" />
+		</path>
+		<!-- top line -->
+		<path d="M 50 21 V 40">
+			<animate
+      attributeName="d"
+      values="M 50 21 V 40; M 50 59 V 40"
+      dur="2s"
+      repeatCount="indefinite" />
+		</path>
+		<!-- btm line -->
+		<path d="M 50 60 V 79">
+			<animate
+      attributeName="d"
+      values="M 50 60 V 79; M 50 98 V 79"
+      dur="2s"
+      repeatCount="indefinite" />
+		</path>
+		<!-- top box -->
+		<path d="M 50 21 L 79 40 L 50 60 L 21 40 Z">
+		<animate
+      attributeName="stroke"
+      values="rgba(255,255,255,1); rgba(100,100,100,0)"
+      dur="2s"
+      repeatCount="indefinite" />
+		</path>
+		<!-- mid box -->
+		<path d="M 50 40 L 79 59 L 50 79 L 21 59 Z"/>
+		<!-- btm box -->
+		<path d="M 50 59 L 79 78 L 50 98 L 21 78 Z">
+		<animate
+      attributeName="stroke"
+      values="rgba(100,100,100,0); rgba(255,255,255,1)"
+      dur="2s"
+      repeatCount="indefinite" />
+		</path>
+		<animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="translate"
+      values="0 0; 0 -19"
+      dur="2s"
+      repeatCount="indefinite" />
+	</g>
+</svg>
+<h1>
+    
+    </h1>
+    <meta http-equiv="refresh" content="3;url=page.html" />
+     <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f5f5f5, #e9ecef);
+}
+
+.course-container {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.course-container h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.course-card {
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.course-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.course-card.professional h2:hover {
+    color: #007bff;
+}
+
+.course-card.plus h2:hover {
+    color: #28a745;
+}
+
+.course-card p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.course-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px;
+    text-align: left;
+}
+
+.course-card ul li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.course-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+button {
+    background: linear-gradient(to right, #007bff, #0056b3);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(to right, #0056b3, #007bff);
+    transform: translateY(-3px);
+}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Purchase Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="course-container">
+        <h1>Choose Your Plan</h1>
+        <div class="course">
+            <div class="course-card professional">
+                <h2>Professional</h2>
+                <p>Perfect for advanced learners looking to master new skills.</p>
+                <ul>
+                    <li>Advanced Course Content</li>
+                    <li>Exclusive Support</li>
+                    <li>Certification Included</li>
+                </ul>
+                <button>Buy Now</button>
+            </div>
+            <div class="course-card plus">
+                <h2>Plus</h2>
+                <p>Great for beginners starting their learning journey.</p>
+                <ul>
+                    <li>Basic Course Content</li>
+                    <li>Community Access</li>
+                    <li>Progress Tracking</li>
+                    <li>account management</li>
+                    <li>access to proffesional videos</li>
+                </ul>
+                <button>Buy Now</button>
+            </div>
+        </div>
+    </div>
+     <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+</body>
+</html>

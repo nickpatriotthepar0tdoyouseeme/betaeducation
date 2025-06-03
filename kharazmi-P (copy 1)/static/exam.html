@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <link rel="icon" type="image/x-icon" href="/images/r.png">
+    <title>🏛️Library</title>
+    <!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        /* Styling for the search bar container */
+        .search-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        /* Styling for the search icon */
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        /* Styling for the search bar */
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 10px 10px 40px; /* Space for the icon */
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        /* Search bar hover and focus animations */
+        .search-bar:focus {
+            border-color: #f44336;
+            box-shadow: 0 0 10px rgba(244, 67, 54, 0.6);
+        }
+
+        /* Icon color change on focus */
+        .search-bar:focus + .search-icon {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Search bar container with icon and input field -->
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-bar" placeholder="🔍جستجو فایل‌ها..." onkeyup="searchPDFs()">
+        
+    </div>
+
+    <!-- JavaScript function for searching -->
+    <script>
+        function searchPDFs() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let pdfItems = document.querySelectorAll('.pdf-item');
+            
+            pdfItems.forEach(item => {
+                let text = item.textContent.toLowerCase();
+                item.style.display = text.includes(input) ? '' : 'none';
+            });
+        }
+    </script>
+
+</body>
+</html>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دانلود فایل‌های PDF آموزشی</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #f44336;
+        }
+
+        .navbar {  
+            background-color: black;  
+            color: white;  
+            position: fixed;  
+            bottom: 0;  
+            width: 100%;  
+            display: flex;  
+            justify-content: space-around;  
+            padding: 15px 0;  
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);  
+        }  
+
+        .navbar a {  
+            color: purple;  
+            text-decoration: none;  
+            font-weight: bold;  
+            transition: color 0.3s;  
+        }  
+
+        .navbar a:hover {  
+            color: white;  
+        }
+
+       
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download PDFs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .pdf-list {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .pdf-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .pdf-item:last-child {
+            border-bottom: none;
+        }
+        .pdf-item a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .pdf-item a:hover {
+            text-decoration: underline;
+        }
+        a{
+            font-family:
+        }
+    </style>
+</head>
+<body>
+
+<h1>Download PDFs</h1>
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Links with Icons</title>
+    <style>
+        /* Styling for the PDF items container */
+        .pdf-item {
+            margin: 8px 0;
+        }
+        
+        /* Styling for each link within the PDF items */
+        .pdf-item a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Styling for the icon image */
+        .pdf-item img {
+            width: 16px;
+            height: 16px;
+            margin-left: 8px; /* Space between the icon and text */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PDF items with icons -->
+   <!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Links with Icons</title>
+    <style>
+        /* Styling for the PDF items container */
+        .pdf-item {
+            margin: 8px 0;
+        }
+
+        /* Styling for each link within the PDF items */
+        .pdf-item a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Styling for the icon image */
+        .pdf-item img {
+            width: 16px;
+            height: 16px;
+            margin-left: 8px; /* Space between the icon and text */
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@700&display=swap'); /* You can use any Farsi font, here Vazirmatn is an example */
+
+a {
+    font-family: 'Vazirmatn', sans-serif; /* Replace with preferred Farsi font */
+    font-weight: bold;
+    color: black;
+    text-decoration: none; /* Remove underline, optional */
+}
+
+a:hover {
+    color: #333; /* Slightly lighter shade on hover, optional */
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- PDF items with icons -->
+    <div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ریاضی پایه هشتم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">فیزیک مقدماتی دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مبانی زیست شناسی دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تاریخ تمدن‌های باستان یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ادبیات فارسی نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">جغرافیای زمین دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">شیمی برای مبتدیان یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">فلسفه و اندیشه دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مقدمات اقتصاد نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تاریخ هنر دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ریاضیات پیشرفته دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مهارت‌های نگارش یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">جامعه‌شناسی نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">علوم زیست محیطی دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">هنر و موسیقی یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">آمار و احتمالات دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تاریخ جهان نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">فرهنگ و تمدن اسلامی دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">فیزیک کلاسیک یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ریاضیات کاربردی دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مطالعات اجتماعی نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">آشنایی با ادبیات انگلیسی دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">فلسفه غرب یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تکنیک‌های آزمایشگاهی دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">فنون نوشتاری نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">علوم کامپیوتر دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">اقتصاد و مدیریت یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ریاضیات محاسباتی دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">اصول علم شیمی نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">نجوم و فضا دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مقدمه‌ای بر تاریخ هنر یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">آموزش هنر و طراحی دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">زیست شناسی پایه نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مبانی حسابداری دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">جامعه‌شناسی خانواده یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">روان‌شناسی دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تاریخ معاصر ایران نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مبانی هندسه نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">زیست‌شناسی پیشرفته دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مفاهیم شیمی دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تاریخ جهان اسلام یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ریاضیات کاربردی نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تکنولوژی و علوم رایانه دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">اقتصاد بین‌الملل یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">اصول آمار و احتمالات دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تحقیقات علمی دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">زبان انگلیسی پیشرفته یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ریاضیات پایه نهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">هنرهای تجسمی دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">مطالعات فرهنگی یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">فیزیک پیشرفته دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">اصول فلسفه دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">ادبیات انگلیسی یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">تاریخ اروپا دوازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">اقتصاد کاربردی دهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">پروژه‌های علمی یازدهم</a></div>
+<div class="pdf-item"><a href="https://www.learningcontainer.com/wp-content/uploads/2019/09/sample-pdf-file.pdf" download><img src="images/6.png" alt="icon">زیست‌شناسی تکاملی دوازدهم</a></div>
+
+</body>
+</html>
+
+    <!-- Continue adding PDF items similarly as needed -->
+
+</body>
+</html>
+
+
+</body>
+    <div class="container">
+    </div>
+    </html>
+    
+
+<!-- English Navbar -->
+
+     <div class="results" id="resultsContainer"></div>  
+
+   <div class="results" id="resultsContainer"></div>  
+
+    <div class="navbar">
+   
+    <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
+    <a href="page.html"><i class="fas fa-home"></i> Main Page</a>
+    <a href="+blog.html"><i class="fas fa-plus"></i> Add Blog</a>
+    <a href="course.html"><i class="fas fa-pencil-alt"></i> Online Courses</a>
+    <a href="account.html"><i class="fas fa-id-card"></i> Account</a>
+    <a href="exam.html"><i class="fas fa-book"></i> Exams and Books</a>
+    <a href="notepad.html"><i class="fas fa-clipboard"></i> Notepad</a>
+</div>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+ <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+</body>
+</html>

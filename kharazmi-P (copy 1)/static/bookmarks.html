@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmark Page</title>
+  <style>
+     
+      }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    h2 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    .bookmark-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .bookmark-item {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .bookmark-item a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .bookmark-item button {
+      background: none;
+      border: none;
+      color: red;
+      font-size: 18px;
+      cursor: pointer;
+    }
+       .navbar {  
+            background-color: black;  
+            color: white;  
+            position: fixed;  
+            bottom: 0;  
+            width: 100%;  
+            display: flex;  
+            justify-content: space-around;  
+            padding: 15px 0;  
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);  
+        }  
+
+        .navbar a {  
+            color: purple;  
+            text-decoration: none;  
+            font-weight: bold;  
+            transition: color 0.3s;  
+        }  
+
+        .navbar a:hover {  
+            color: white;  
+        }  
+
+  </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmark Page</title>
+  <style>
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+        .navbar {  
+            background-color: black;  
+            color: white;  
+            position: fixed;  
+            bottom: 0;  
+            width: 100%;  
+            display: flex;  
+            justify-content: space-around;  
+            padding: 15px 0;  
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);  
+        }  
+
+        .navbar a {  
+            color: purple;  
+            text-decoration: none;  
+            font-weight: bold;  
+            transition: color 0.3s;  
+        }  
+
+        .navbar a:hover {  
+            color: white;  
+        }  
+
+    /* Container styling */
+    .container {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+
+    /* Input and button styling */
+    input, button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Bookmark list styling */
+    .bookmark-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .bookmark-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border-radius: 6px;
+      margin: 8px 0;
+      transition: transform 0.2s;
+    }
+
+    .bookmark-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .bookmark-item a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .bookmark-item a:hover {
+      color: #0056b3;
+    }
+
+    .bookmark-item a span {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+
+    /* Remove button styling */
+    .bookmark-item button {
+      background: none;
+      border: none;
+      color: red;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🔖 Bookmark Page</h2>
+
+    <input type="text" id="bookmarkName" placeholder="Enter bookmark name" required>
+    <input type="url" id="bookmarkURL" placeholder="Enter bookmark URL (127.0.0.1:5000/*url*)" required>
+    <button onclick="addBookmark()">Add Bookmark</button>
+
+    <h3>Your Bookmarks</h3>
+    <ul id="bookmarkList" class="bookmark-list"></ul>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', loadBookmarks);
+
+    function addBookmark() {
+      const name = document.getElementById('bookmarkName').value;
+      const url = document.getElementById('bookmarkURL').value;
+      
+      if (!name || !url) {
+        alert('Please enter both a name and a URL.');
+        return;
+      }
+      
+      const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+      bookmarks.push({ name, url });
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      
+      document.getElementById('bookmarkName').value = '';
+      document.getElementById('bookmarkURL').value = '';
+      displayBookmarks();
+    }
+
+    function loadBookmarks() {
+      displayBookmarks();
+    }
+
+    function displayBookmarks() {
+      const bookmarkList = document.getElementById('bookmarkList');
+      bookmarkList.innerHTML = '';
+      const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+      
+      bookmarks.forEach((bookmark, index) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'bookmark-item';
+        listItem.innerHTML = `
+          <a href="${bookmark.url}" target="_blank">
+            <span>🔖</span> ${bookmark.name}
+          </a>
+          <button onclick="removeBookmark(${index})">❌</button>
+        `;
+        bookmarkList.appendChild(listItem);
+      });
+    }
+
+    function removeBookmark(index) {
+      const bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+      bookmarks.splice(index, 1);
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      displayBookmarks();
+    }
+  </script>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background Picture</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-image 0.5s ease;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        label, input {
+            display: block;
+            margin: 15px 0;
+        }
+        input[type="file"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h9>Background Picture</h9>
+    <label for="bgInput"></label>
+    <input type="file" id="bgInput" accept="image/*">
+</div>
+    <style>
+        div {
+            size : 5 px
+        }
+    </style>
+
+<script>
+    // Function to load the saved background image from localStorage
+    function loadSavedBackground() {
+        const savedImage = localStorage.getItem("backgroundImage");
+        if (savedImage) {
+            document.body.style.backgroundImage = `url('${savedImage}')`;
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+        }
+    }
+
+    // Call loadSavedBackground on page load
+    document.addEventListener("DOMContentLoaded", loadSavedBackground);
+
+    // Event listener for file input to change background and save it
+    document.getElementById("bgInput").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        
+        if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                document.body.style.backgroundImage = `url('${imageUrl}')`;
+                document.body.style.backgroundSize = "cover";
+                document.body.style.backgroundPosition = "center";
+                
+                // Save the image URL to localStorage
+                localStorage.setItem("backgroundImage", imageUrl);
+            };
+            
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please select a valid image file.");
+        }
+    });
+</script>
+
+</body>
+</html>
+
+    
+    <div class="results" id="resultsContainer"></div>  
+
+    <div class="navbar">
+    <a href="bookmarks.html"><i class="fas fa-bookmark"></i> Bookmarks</a>
+    <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
+    <a href="page.html"><i class="fas fa-home"></i> Main Page</a>
+    <a href="+blog.html"><i class="fas fa-plus"></i> Add Blog</a>
+    <a href="course.html"><i class="fas fa-pencil-alt"></i> Online Courses</a>
+    <a href="account.html"><i class="fas fa-id-card"></i> Account</a>
+    <a href="exam.html"><i class="fas fa-book"></i> Exams and Books</a>
+    <a href="notepad.html"><i class="fas fa-clipboard"></i> Notepad</a>
+</div>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+        
+    </div> 
+    </div> 
+    
+</body>
+    
+</html>
+ <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+</html>
+        

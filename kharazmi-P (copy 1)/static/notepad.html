@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <link rel="icon" type="image/x-icon" href="/images/r.png">
+    <title>📝notes</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <title>Notepad App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .textarea-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .textarea {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            outline: none;
+            font-size: 16px;
+            resize: none;
+            background-color: white;
+            overflow: auto;
+        }
+
+        .toolbar {
+            margin-bottom: 20px;
+        }
+
+        .toolbar button {
+            margin-right: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .toolbar button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .notes-sidebar {
+            width: 250px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .note-item:hover {
+            background-color: #e9e9e9;
+        }
+
+        .note-title {
+            font-weight: bold;
+        }
+
+        .delete-note {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .navbar {
+            background-color: black;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: purple;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="notes-sidebar" id="notesSidebar">
+            <h2>یادداشت‌های ذخیره شده</h2>
+            <div id="notesList"></div>
+        </div>
+
+        <div class="textarea-container">
+            <div class="toolbar">
+                <button id="bold">Bold</button>
+                <button id="italic">Italic</button>
+                <button id="underline">Underline</button>
+                <button id="highlight">Highlight</button>
+                <input type="file" id="imageUpload" accept="image/*" />
+                <button id="saveNote">Save Note</button>
+            </div>
+            <div id="noteInput" class="textarea" contenteditable="true" data-placeholder="یادداشت‌های خود را اینجا بنویسید..."></div>
+        </div>
+    </div>
+
+    <script>
+        const noteInput = document.getElementById('noteInput');
+        const notesList = document.getElementById('notesList');
+
+        // Load saved notes from localStorage
+        loadNotes();
+
+        // Toolbar buttons
+        document.getElementById('bold').addEventListener('click', () => {
+            document.execCommand('bold');
+            noteInput.focus();
+        });
+
+        document.getElementById('italic').addEventListener('click', () => {
+            document.execCommand('italic');
+            noteInput.focus();
+        });
+
+        document.getElementById('underline').addEventListener('click', () => {
+            document.execCommand('underline');
+            noteInput.focus();
+        });
+
+        document.getElementById('highlight').addEventListener('click', () => {
+            document.execCommand('backColor', false, 'yellow');
+            noteInput.focus();
+        });
+
+        document.getElementById('imageUpload').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const img = new Image();
+                    img.src = reader.result;
+                    img.style.maxWidth = '100%';
+                    img.style.display = 'block';
+                    noteInput.innerHTML += `<img src="${reader.result}" alt="Image" />`;
+                    noteInput.focus();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('saveNote').addEventListener('click', () => {
+            const noteContent = noteInput.innerHTML.trim();
+            if (noteContent) {
+                const noteTitle = `یادداشت ${new Date().toLocaleString()}`;
+                saveNoteToLocalStorage(noteTitle, noteContent);
+                noteInput.innerHTML = ''; // Clear the input
+            }
+        });
+
+        function saveNoteToLocalStorage(title, content) {
+            let notes = JSON.parse(localStorage.getItem('notes')) || {};
+            notes[title] = content;
+            localStorage.setItem('notes', JSON.stringify(notes));
+            loadNotes();
+        }
+
+        function loadNotes() {
+            const notes = JSON.parse(localStorage.getItem('notes')) || {};
+            notesList.innerHTML = ''; // Clear existing notes
+
+            Object.keys(notes).forEach(noteTitle => {
+                const noteItem = document.createElement('div');
+                noteItem.className = 'note-item';
+
+                const noteTitleSpan = document.createElement('span');
+                noteTitleSpan.className = 'note-title';
+                noteTitleSpan.textContent = noteTitle;
+                noteTitleSpan.onclick = () => loadNoteContent(noteTitle, notes[noteTitle]);
+
+                const deleteBtn = document.createElement('span');
+                deleteBtn.className = 'delete-note';
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteBtn.onclick = () => deleteNoteFromLocalStorage(noteTitle);
+
+                noteItem.appendChild(noteTitleSpan);
+                noteItem.appendChild(deleteBtn);
+                notesList.appendChild(noteItem);
+            });
+        }
+
+        function loadNoteContent(title, content) {
+            noteInput.innerHTML = content;
+        }
+
+        function deleteNoteFromLocalStorage(title) {
+            const notes = JSON.parse(localStorage.getItem('notes')) || {};
+            delete notes[title];
+            localStorage.setItem('notes', JSON.stringify(notes));
+            loadNotes();
+        }
+
+        // Placeholder effect for contenteditable div
+        noteInput.addEventListener('focus', function() {
+            if (noteInput.innerHTML === '') noteInput.setAttribute('data-placeholder', '');
+        });
+
+        noteInput.addEventListener('blur', function() {
+            if (noteInput.innerHTML === '') noteInput.setAttribute('data-placeholder', 'یادداشت‌های خود را اینجا بنویسید...');
+        });
+    </script>
+
+   <div class="results" id="resultsContainer"></div>  
+
+    <div class="results" id="resultsContainer"></div>  
+
+    <div class="navbar">
+    
+    <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
+    <a href="page.html"><i class="fas fa-home"></i> Main Page</a>
+    <a href="+blog.html"><i class="fas fa-plus"></i> Add Blog</a>
+    <a href="course.html"><i class="fas fa-pencil-alt"></i> Online Courses</a>
+    <a href="account.html"><i class="fas fa-id-card"></i> Account</a>
+    <a href="exam.html"><i class="fas fa-book"></i> Exams and Books</a>
+    <a href="notepad.html"><i class="fas fa-clipboard"></i> Notepad</a>
+</div>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+ <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+    </div> 
+    
+</body>
+    
+</html>
