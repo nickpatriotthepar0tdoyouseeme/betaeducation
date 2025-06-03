@@ -1,0 +1,7 @@
+Flask>=2.0
+Flask-CORS>=3.1
+flask-socketio>=5.0
+python-dotenv>=0.19
+pusher>=4.0
+werkzeug>=2.0
+sqlite3 

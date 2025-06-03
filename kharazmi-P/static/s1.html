@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Chat</title>
+  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+  <style>
+    /* General Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f3f4f6;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #0078D7;
+      margin-bottom: 20px;
+    }
+
+    /* Chat box styling */
+    #chat {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      width: 90%;
+      max-width: 400px;
+      height: 400px;
+      overflow-y: scroll;
+      margin-bottom: 20px;
+    }
+    #chat div {
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: #e3f2fd;
+      color: #333;
+      transition: transform 0.2s;
+    }
+    #chat div:hover {
+      transform: scale(1.05);
+      background: #bbdefb;
+    }
+
+    /* Input fields styling */
+    input[type="text"] {
+      width: calc(100% - 20px);
+      max-width: 300px;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    input[type="text"]:focus {
+      box-shadow: 0 0 5px #0078D7;
+      border-color: #0078D7;
+    }
+
+    /* Button styling */
+    #send {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #0078D7;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    #send:hover {
+      background: #005BB5;
+    }
+    #send:active {
+      transform: scale(0.95);
+    }
+  </style>
+  <script>
+    // Enable Pusher logging - Remove in production
+    Pusher.logToConsole = true;
+
+    // Initialize Pusher
+    const pusher = new Pusher('20c9ce999085eb7fa324', {
+      cluster: 'ap1'
+    });
+
+    // Subscribe to the chat channel
+    const channel = pusher.subscribe('chat-channel');
+    channel.bind('message-sent', function(data) {
+      const chatBox = document.getElementById('chat');
+      const messageElement = document.createElement('div');
+      messageElement.textContent = `${data.username}: ${data.message}`;
+      chatBox.appendChild(messageElement);
+      chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the latest message
+    });
+
+    // Send message to the server
+    function sendMessage() {
+      const messageInput = document.getElementById('message');
+      const usernameInput = document.getElementById('username');
+      const message = messageInput.value.trim();
+      const username = usernameInput.value.trim();
+
+      if (message && username) {
+        fetch('/send_message', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, message }),
+        })
+        .then((response) => {
+          if (response.ok) {
+            messageInput.value = ''; // Clear the input field after sending
+          } else {
+            alert('Failed to send message');
+          }
+        });
+      } else {
+        alert('Both username and message are required.');
+      }
+    }
+  </script>
+     <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+</head>
+<body>
+  <h1>Real-Time Chat</h1>
+  <div id="chat"></div>
+  <input type="text" id="username" placeholder="Your name" />
+  <input type="text" id="message" placeholder="Type a message" />
+  <button id="send" onclick="sendMessage()">Send</button>
+</body>
+</html>

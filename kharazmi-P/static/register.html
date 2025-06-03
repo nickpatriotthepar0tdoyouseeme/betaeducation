@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Standard favicon -->
+<head>
+    <!-- Standard favicon -->
+    <link rel="icon" href="/static/images/r.png" type="image/png">
+    <link rel="apple-touch-icon" href="/static/images/r.png">
+    <!-- Manifest (for PWA) -->
+    <link rel="manifest" href="/static/manifest.json">
+</head>
+    <head>
+</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register and Login</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: skyblue;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .container {
+            
+            width: 50%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0 5px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .switch-form a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <div class="container" id="register-container">
+        <body style="margin: 0; height: 100vh; display: flex; justify-content: center; align-items: flex-start;"><img src="/images/r.png" alt="Image" style="width: 80px; height: 80px;"></body>
+        <h2>register</h2>
+        <form id="register-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div id="message"></div>
+        
+        <div class="switch-form">
+            <p>Already have an account? <a href="javascript:void(0);" onclick="showLoginForm()">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Login Form -->
+    <div class="container" id="login-container" style="display:none;">
+         <body style="margin: 0; height: 100vh; display: flex; justify-content: center; align-items: flex-start;"><img src="/images/r.png" alt="Image" style="width: 80px; height: 80px;"></body>
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" name="email" required><br>
+
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" required><br>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div id="login-message"></div>
+
+        <div class="switch-form">
+            <p>Don't have an account? <a href="javascript:void(0);" onclick="showRegisterForm()">Register</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Show Register Form
+        function showRegisterForm() {
+            document.getElementById('register-container').style.display = 'block';
+            document.getElementById('login-container').style.display = 'none';
+        }
+
+        // Show Login Form
+        function showLoginForm() {
+            document.getElementById('register-container').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
+        }
+
+        // Register Form Submission
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            const formData = new FormData(this);
+            fetch('/register', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json()) // Always try to parse JSON
+            .then(data => {
+                const messageDiv = document.getElementById('message');
+                if (data.message) {
+                    messageDiv.innerText = data.message;
+                    if (data.message === "Registration successful!") {
+                        messageDiv.classList.add('success');
+                        messageDiv.classList.remove('error');
+                        showLoginForm(); // Show login form on success
+                    } else {
+                        messageDiv.classList.add('error');
+                        messageDiv.classList.remove('success');
+                    }
+                } else {
+                    messageDiv.innerText = 'Unexpected response: ' + JSON.stringify(data);
+                    messageDiv.classList.add('error');
+                    messageDiv.classList.remove('success');
+                }
+            })
+            .catch(error => {
+                const messageDiv = document.getElementById('message');
+                messageDiv.innerText = 'Error: ' + (error.message || error);
+                messageDiv.classList.add('error');
+                messageDiv.classList.remove('success');
+            });
+        });
+
+        // Login Form Submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            const formData = new FormData(this);
+            fetch('/login', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json()) // Always try to parse JSON
+            .then(data => {
+                const messageDiv = document.getElementById('login-message');
+                if (data.message) {
+                    messageDiv.innerText = data.message;
+                    if (data.message === "Login successful!") {
+                        messageDiv.classList.add('success');
+                        messageDiv.classList.remove('error');
+                        window.location.href = '/dashboard'; // Redirect to a dashboard or another page
+                    } else {
+                        messageDiv.classList.add('error');
+                        messageDiv.classList.remove('success');
+                    }
+                } else {
+                    messageDiv.innerText = 'Unexpected response: ' + JSON.stringify(data);
+                    messageDiv.classList.add('error');
+                    messageDiv.classList.remove('success');
+                }
+            })
+            .catch(error => {
+                const messageDiv = document.getElementById('login-message');
+                messageDiv.innerText = 'Error: ' + (error.message || error);
+                messageDiv.classList.add('error');
+                messageDiv.classList.remove('success');
+            });
+        });
+    </script>
+      <script>document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+</script>
+</body>
+</html>

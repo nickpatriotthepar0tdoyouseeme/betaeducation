@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body class="text">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/images/r.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css">
+  <title>βeta</title>
+  <style>
+    
+      img {
+           max-width: 50%; 
+  height: auto; 
+  display: block; 
+          height: 120px;
+          width: 120px;
+          margin: left ;
+          margin-top: 40px; 
+  text-align: left; 
+  padding-left: 20px; 
+      }
+      .image-container {
+  margin-top: 40px; 
+  text-align: left; 
+  padding-left: 20px;
+}
+
+.image-container img {
+  max-width: 50%; 
+  height: auto; 
+  display: block; 
+}
+
+    #loadingOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      z-index: 9999;
+    }
+::selection {
+    background-color: black; 
+    color: green; 
+}
+   
+    .marquee {
+      background-color: #333; 
+      color: #fff; 
+      font-size: 14px; 
+      padding: 5px 0; 
+      overflow: hidden;
+      white-space: nowrap; 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
+      position: fixed; 
+      width: 100%; 
+      top: 0; 
+      z-index: 1000;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      padding-left: 100%; 
+      animation: marquee 15s linear infinite; 
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    
+    .image-container {
+      margin-top: 40px; 
+      text-align: center; 
+    }
+
+    .image-container img {
+      max-width: 50%; 
+      height: auto;
+    }
+
+   
+    .categories-bar {
+      display: flex;
+      align-items: center;
+      background-color: #f4f4f9;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 20px 0;
+      width: 100%; 
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .categories-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-right: 20px;
+      color: #333;
+    }
+
+    .categories-button {
+      background-color: black;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background-color 0.2s ease;
+    }
+
+    .categories-button:hover {
+      background-color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .categories-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .categories-button {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="loadingOverlay"></div>
+
+  
+  
+  
+  <div class="marquee" id="marquee">
+    <div class="marquee-content">
+     <p>
+  "The only way to do great work is to love what you do." - Steve Jobs &nbsp; &nbsp;
+  "Life is what happens when you're busy making other plans." - John Lennon &nbsp; &nbsp;
+  "Get busy living or get busy dying." - Stephen King &nbsp; &nbsp;
+  "You have within you right now, everything you need to deal with whatever the world can throw at you." - Brian Tracy &nbsp; &nbsp;
+  "The best way to predict your future is to create it." - Peter Drucker &nbsp; &nbsp;
+  "Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston S. Churchill &nbsp; &nbsp;
+  "Your time is limited, so don't waste it living someone else's life." - Steve Jobs &nbsp; &nbsp;
+  "You miss 100% of the shots you don’t take." - Wayne Gretzky &nbsp; &nbsp;
+  "The journey of a thousand miles begins with one step." - Lao Tzu &nbsp; &nbsp;
+  "Believe you can and you're halfway there." - Theodore Roosevelt &nbsp; &nbsp;
+  "Do what you can, with what you have, where you are." - Theodore Roosevelt &nbsp; &nbsp;
+  "Dream big and dare to fail." - Norman Vaughan &nbsp; &nbsp;
+  "It does not matter how slowly you go as long as you do not stop." - Confucius &nbsp; &nbsp;
+  "The only limit to our realization of tomorrow will be our doubts of today." - Franklin D. Roosevelt &nbsp; &nbsp;
+  "Hardships often prepare ordinary people for an extraordinary destiny." - C.S. Lewis &nbsp; &nbsp;
+  "Opportunities don't happen. You create them." - Chris Grosser &nbsp; &nbsp;
+  "Strive not to be a success, but rather to be of value." - Albert Einstein &nbsp; &nbsp;
+  "Don't be pushed around by the fears in your mind. Be led by the dreams in your heart." - Roy T. Bennett &nbsp; &nbsp;
+  "Act as if what you do makes a difference. It does." - William James &nbsp; &nbsp;
+  "The best revenge is massive success." - Frank Sinatra
+</p>
+
+    </div>
+  </div>
+
+  <!-- Image Container -->
+    <a href="test.html">
+  <div class="image-container">
+    <img src="/images/r.png" alt="Centered Image">
+  </div>
+        </a>
+
+  <!-- Categories -->
+  <div class="categories-bar">
+    <span class="categories-title">Categories:</span>
+    <a href="math.html" class="categories-button">Math</a>
+    <a href="science.html" class="categories-button">Science</a>
+    <a href="history.html" class="categories-button">History</a>
+    <a href="english.html" class="categories-button">English</a>
+    <a href="geography.html" class="categories-button">Geography</a>
+  </div>
+
+  <!-- Script to handle marquee and overlay -->
+  <script>
+    // Hide loading overlay after 100ms
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        const overlay = document.getElementById("loadingOverlay");
+        overlay.style.display = "none";
+      }, 100);
+    });
+
+    // Marquee logic
+    const marquee = document.getElementById('marquee');
+    const content = marquee.querySelector('.marquee-content');
+    const quotes = content.innerHTML; // Store quotes
+    const quotesArray = quotes.split('&nbsp; &nbsp;'); // Split quotes into an array
+
+    let index = 0;
+
+    function updateMarquee() {
+      content.innerHTML = quotesArray[index];
+      index = (index + 1) % quotesArray.length;
+    }
+
+    setInterval(updateMarquee, 15000);
+    updateMarquee(); // Display the first quote immediately
+  </script>
+</body>
+</html>
+
+    
+<div class="search">
+        <input type="text" class="input" placeholder="Search..." id="searchInput">
+        <button class="btn">
+            <i class="fas fa-search"></i>
+        </button>
+        <div class="results" id="resultsBox"></div>
+    </div>
+<style>
+    .text {
+        color: white
+    }
+       
+        .search {
+            position: relative;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        
+
+        
+
+        .results {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #fff;
+            display: none; 
+        }
+
+        .results a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .results a:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+    <script>
+   
+    const searchResults = [
+        { name: "اثبات رابطه فیثاغورث               نهم", link: "1.html" },
+        { name: "تاریخ معاصر                         دهم", link: "2.html" },
+        { name: "تاریخ ادبیات                        یازدهم", link: "3.html" },
+        { name: "دستور زبان                          نهم", link: "4.html" },
+        { name: "ریاضی پایه                           هشتم", link: "5.html" },
+        { name: "فیزیک مقدماتی                       دوازدهم", link: "6.html" },
+        { name: "مبانی زیست شناسی                   دهم", link: "7.html" },
+        { name: "تاریخ تمدن‌های باستان             یازدهم", link: "8.html" },
+        { name: "ادبیات فارسی                         نهم", link: "9.html" },
+        { name: "جغرافیای زمین                       دهم", link: "10.html" },
+        { name: "شیمی برای مبتدیان                 یازدهم", link: "11.html" },
+        { name: "فلسفه و اندیشه                     دوازدهم", link: "12.html" },
+        { name: "مقدمات اقتصاد                       نهم", link: "13.html" },
+        { name: "تاریخ هنر                           دهم", link: "14.html" },
+        { name: "ریاضیات پیشرفته                  دوازدهم", link: "15.html" },
+        { name: "مهارت‌های نگارش                    یازدهم", link: "16.html" },
+        { name: "جامعه‌شناسی                         نهم", link: "17.html" },
+        { name: "علوم زیست محیطی                    دهم", link: "18.html" },
+        { name: "هنر و موسیقی                        یازدهم", link: "19.html" },
+        { name: "آمار و احتمالات                      دوازدهم", link: "20.html" },
+        { name: "تاریخ جهان                          نهم", link: "21.html" },
+        { name: "فرهنگ و تمدن اسلامی              دهم", link: "22.html" },
+        { name: "فیزیک کلاسیک                      یازدهم", link: "23.html" },
+        { name: "ریاضیات کاربردی                   دوازدهم", link: "24.html" },
+        { name: "مطالعات اجتماعی                    نهم", link: "25.html" },
+        { name: "آشنایی با ادبیات انگلیسی          دهم", link: "26.html" },
+        { name: "فلسفه غرب                          یازدهم", link: "27.html" },
+        { name: "تکنیک‌های آزمایشگاهی              دوازدهم", link: "28.html" },
+        { name: "فنون نوشتاری                      نهم", link: "29.html" },
+        { name: "علوم کامپیوتر                       دهم", link: "30.html" },
+        { name: "اقتصاد و مدیریت                    یازدهم", link: "31.html" },
+        { name: "ریاضیات محاسباتی                دوازدهم", link: "32.html" },
+        { name: "اصول علم شیمی                      نهم", link: "33.html" },
+        { name: "نجوم و فضا                          دهم", link: "34.html" },
+        { name: "مقدمه‌ای بر تاریخ هنر             یازدهم", link: "35.html" },
+        { name: "آموزش هنر و طراحی                دوازدهم", link: "36.html" },
+        { name: "زیست شناسی پایه                   نهم", link: "37.html" },
+        { name: "مبانی حسابداری                    دهم", link: "38.html" },
+        { name: "جامعه‌شناسی خانواده                یازدهم", link: "39.html" },
+        { name: "روان‌شناسی                          دوازدهم", link: "40.html" }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const resultsBox = document.getElementById("resultsBox");
+
+   
+    searchInput.addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        resultsBox.innerHTML = "";  // Clear previous results
+
+        if (query !== "") {
+            const filteredTopics = searchResults.filter(topic => topic.name.toLowerCase().includes(query)).slice(0, 5);
+
+            if (filteredTopics.length > 0) {
+                resultsBox.style.display = "block";  // Show results box
+
+                filteredTopics.forEach(topic => {
+                    const linkElement = document.createElement("a");
+                    linkElement.href = topic.link;
+                    linkElement.textContent = topic.name;
+                    resultsBox.appendChild(linkElement);
+                });
+            } else {
+                resultsBox.style.display = "none";  
+            }
+        } else {
+            resultsBox.style.display = "none";  
+        }
+    });
+        document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', event => {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+        event.preventDefault();
+    }
+});
+
+</script>
+    </body>
+</html>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="bookmark"></div>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div></div>
+   
+</body>
+    <style>
+        
+    body {
+        background-image: linear-gradient(90deg, #89f7fe, #66a6ff);
+
+    font-family: Arial, sans-serif;
+
+
+
+
+
+
+    margin: 0;
+    padding: 0;
+}
+
+.search-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#search-bar {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.results-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-item {
+    background-color: black;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.result-item a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.result-item:hover {
+    background-color: #e0e0e0;
+}
+.result-item {
+    background-color: white;
+    margin: 0px 0;
+    padding: 0; 
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 30px; 
+    overflow: hidden; 
+}
+    </style>
+</html>
+
+
+<link rel="stylesheet" href="style.css"> 
+<script src="https://kit.fontawesome.com/1cf483120b.js" crossorigin="anonymous"></script>   
+<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi0RCj8aLdKFX-cvYkW6kDveuaUlMnpes&libraries=places&callback=initMap"></script> 
+ 
+<script src="index.js"></script>
+<script src="script.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+box-sizing: border-box;
+}
+body {
+
+
+font-family: 'Roboto', sans-serif;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+overflow: hidden;
+margin: 0;
+}
+.search {
+position: relative;
+height: 50px;
+}
+.search .input {
+background-color: #fff;
+border: 0;
+font-size: 18px;
+padding: 15px;
+height: 50px;
+width: 50px;
+transition: width 0.3s ease;
+}
+.btn {
+background-color: #fff;
+border: 0;
+cursor: pointer;
+font-size: 24px;
+position: absolute;
+top: 0;
+left: 0;
+height: 50px;
+width: 50px;
+transition: transform 0.3s ease;
+}
+.btn:focus,
+.input:focus {
+outline: none;
+}
+.search.active .input {
+width: 200px;
+}
+.search.active .btn {
+transform: translateX(198px);
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+body {
+   
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+.search {
+    position: relative;
+    height: 50px;
+}
+
+.search .input {
+    background-color: #fff;
+    border: 0;
+    font-size: 18px;
+    padding: 15px;
+    height: 50px;
+    width: 50px;
+    transition: width 0.3s ease;
+}
+
+.btn {
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    transition: transform 0.3s ease;
+}
+
+.btn:focus,
+.input:focus {
+    outline: none;
+}
+
+.search.active .input {
+    width: 200px;
+}
+
+.search.active .btn {
+    transform: translateX(198px);
+}
+</style>
+<script>const search = document.querySelector('.search')
+const btn = document.querySelector('.btn')
+const input = document.querySelector('.input')
+btn.addEventListener('click', () => {
+search.classList.toggle('active')
+input.focus()
+})</script>
+</body>
+</html>
+    <style>  
+        .image-placeholder {  
+            position: relative;  
+            width: 300px;  
+            height: 200px;  
+            background-color: #e0e0e0;  
+            border: 2px dashed #bbb;  
+            border-radius: 8px;  
+            text-align: center;  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            flex-direction: column;  
+        }  
+
+        .logo {  
+            position: absolute;  
+            top: 10px;  
+            left: 10px;  
+            width: 40px; 
+            height: auto;  
+        }  
+
+        .placeholder-text {  
+            color: white;  
+            font-size: 16px;  
+            padding: 20px;  
+        }  
+    </style>
+    <style>  
+        body {  
+            margin: 0;  
+            font-family: Arial, sans-serif;  
+            overflow-x: hidden;  
+        
+
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;  
+            justify-content: center;  
+            min-height: 100vh;  
+        }  
+
+        .video-section {  
+            position: relative;  
+            width: 640px;  
+            height: 360px;  
+            background-color: black;  
+            overflow: hidden;  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            cursor: pointer;  
+            margin-bottom: 20px;  
+        }  
+
+        video {  
+            width: 100%;  
+            height: 100%;  
+            object-fit: cover;  
+        }  
+
+        .overlay {  
+            position: absolute;  
+            top: 0;  
+            left: 0;  
+            width: 100%;  
+            height: 100%;  
+            background: rgba(0, 0, 0, 0.6);  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            color: white;  
+            font-size: 20px;  
+            pointer-events: none;  
+        }  
+
+        * {  
+            box-sizing: border-box;  
+        }  
+
+        .results {  
+            margin-top: 20px;  
+            color: #fff;  
+            text-align: center;  
+        }  
+
+        .result {  
+            display: none;  
+        }  
+
+        .result.visible {  
+            display: block;  
+        }  
+
+        .navbar {  
+            background-color: black;  
+            color: white;  
+            position: fixed;  
+            bottom: 0;  
+            width: 100%;  
+            display: flex;  
+            justify-content: space-around;  
+            padding: 15px 0;  
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);  
+        }  
+
+        .navbar a {  
+            color: purple;  
+            text-decoration: none;  
+            font-weight: bold;  
+            transition: color 0.3s;  
+        }  
+
+        .navbar a:hover {  
+            color: white;  
+        }  
+
+        .search-container {  
+            display: flex;  
+            align-items: center;  
+            margin-bottom: 20px;  
+        }  
+
+        .input {  
+            padding: 10px;  
+            border: none;  
+            border-radius: 5px;  
+            outline: none;  
+            font-size: 16px;  
+            margin-right: 8px;  
+        }  
+
+        .search-icon {  
+            font-size: 22px;  
+            color: white;  
+        }  
+    </style>  
+</head>  
+
+<body>  
+   
+  
+
+        
+        
+        
+        
+          
+    </div>  
+    <div>
+   
+    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <style>
+        
+     
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #eaeef1;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .video-container {
+            margin: 20px 0;
+        }
+
+        video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: auto;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #007BFF;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    
+    
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const searchInput = document.getElementById('searchInput');
+
+        function loadVideos() {
+            const videos = JSON.parse(localStorage.getItem('videos')) || [];
+
+            videos.forEach(video => {
+                const videoContainer = document.createElement('div');
+                videoContainer.classList.add('video-container');
+                videoContainer.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <video controls>
+                        <source src="${video.url}" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                `;
+                gallery.appendChild(videoContainer);
+            });
+        }
+
+       
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const videoContainers = document.querySelectorAll('.video-container');
+            videoContainers.forEach(container => {
+                const title = container.querySelector('h3').textContent.toLowerCase();
+                container.style.display = title.includes(query) ? 'block' : 'none';
+            });
+        });
+
+        loadVideos(); 
+    </script>
+</body>
+</html>
+
+    <div class="results" id="resultsContainer"></div>  
+
+    <div class="navbar">
+    
+    <a href="news.html"><i class="fas fa-newspaper"></i> News</a>
+    <a href="page.html"><i class="fas fa-home"></i> Main Page</a>
+    <a href="+blog.html"><i class="fas fa-plus"></i> Add Blog</a>
+    <a href="course.html"><i class="fas fa-pencil-alt"></i> Online Courses</a>
+    <a href="account.html"><i class="fas fa-id-card"></i> Account</a>
+    <a href="exam.html"><i class="fas fa-book"></i> Exams and Books</a>
+    <a href="notepad.html"><i class="fas fa-clipboard"></i> Notepad</a>
+</div>
+
+
+        
+    </div> 
+    
+    <script>  
+        let isPlaying = true;  
+        const video = document.getElementById('myVideo');  
+        const videoSection = document.getElementById('videoSection');  
+        const searchInput = document.getElementById('searchInput');  
+
+        const titles = [""]; 
+      
+        titles.forEach(title => {  
+            const overlayText = document.createElement('p');  
+            overlayText.textContent = title;  
+            videoOverlay.appendChild(overlayText);  
+        });  
+
+         
+        videoSection.addEventListener('mouseenter', () => {  
+            if (!isPlaying) {  
+                video.play();  
+                isPlaying = true;  
+            }  
+        });  
+
+        window.addEventListener('scroll', () => {  
+            if (isPlaying) {  
+                video.pause();  
+                isPlaying = false;  
+            }  
+        });  
+
+        
+        function openFullscreen() {  
+            const fullScreenElement = videoSection;  
+            if (fullScreenElement.requestFullscreen) {  
+                fullScreenElement.requestFullscreen();  
+            } else if (fullScreenElement.mozRequestFullScreen) { // Firefox  
+                fullScreenElement.mozRequestFullScreen();  
+            } else if (fullScreenElement.webkitRequestFullscreen) { // Chrome, Safari, and Opera  
+                fullScreenElement.webkitRequestFullscreen();  
+            } else if (fullScreenElement.msRequestFullscreen) { // IE/Edge  
+                fullScreenElement.msRequestFullscreen();  
+            }  
+            video.style.display = 'block'; // Show video when opening  
+        }  
+
+      
+        const resultsContainer = document.getElementById('resultsContainer');  
+
+       
+        titles.forEach(title => {  
+            const result = document.createElement('p');  
+            result.textContent = title;  
+            result.className = 'result';  
+            resultsContainer.appendChild(result);  
+        });  
+
+         
+        searchInput.addEventListener('input', () => {  
+            const query = searchInput.value.toLowerCase();  
+            const results = document.querySelectorAll('.result');  
+            results.forEach(result => {  
+                if (result.textContent.toLowerCase().includes(query)) {  
+                    result.classList.add('visible');  
+                } else {  
+                    result.classList.remove('visible');  
+                }  
+            });  
+        });  
+    </script>  
+    <style>
+        mark {
+            font-weight: bold
+            color: white
+                font-family : Tahoma
+                
+        }
+    </style>
+    <h5><mark>Version 5.oo</mark> -pro</h5>
+    <script>
+      
+
+  = [  
+ '127.0.0.1:5000/register.html',  
+ '127.0.0.1:5000/loader.html'  
+ ];  
+
+ 
+</script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+        .copyright {
+            text-align: center;
+            color: #555;
+        }
+        h9{
+            color: black;
+            font-size: 10px;
+        }
+    </style>
+   
+
+
+</html>
+    

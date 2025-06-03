@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2DkMZj4zI2WV9qI9AykC4wYkqNxHn9B/S7E5u/j59nz47qfw5gM86N6BkKaFiYw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .badges-container {
+            margin-top: 20px;
+        }
+        .badge {
+            font-size: 24px;
+            margin: 10px;
+            color: #ccc;
+        }
+        .badge.unlocked {
+            color: #ffd700; /* Gold for unlocked badges */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ user.username }}!</h2>
+        <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+        <p><strong>Password:</strong> {{ user.password }}</p>
+        
+        <div class="badges-container" id="badges">
+            <h3>Your Badges</h3>
+            <!-- Badges will be dynamically loaded here -->
+        </div>
+
+        <form action="/" method="POST">
+            <button type="submit" name="action" value="logout" class="logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+                event.preventDefault();
+            }
+        });
+
+        async function loadBadges() {
+            const badgesContainer = document.getElementById('badges');
+
+            try {
+                const response = await fetch('/badges'); // Fetch badges from the backend
+                if (!response.ok) {
+                    throw new Error('Failed to fetch badges');
+                }
+                const data = await response.json();
+                const userBadges = data.badges || [];
+
+                const badgeCriteria = [
+                    { name: '1 Day', icon: 'fa-calendar-day' },
+                    { name: '1 Week', icon: 'fa-calendar-week' },
+                    { name: '2 Weeks', icon: 'fa-calendar-alt' },
+                    { name: '3 Weeks', icon: 'fa-calendar-check' },
+                    { name: '1 Month', icon: 'fa-calendar' },
+                    { name: '6 Months', icon: 'fa-star-half-alt' },
+                    { name: '1 Year', icon: 'fa-star' },
+                    { name: '2 Years', icon: 'fa-award' },
+                ];
+
+                // Clear existing badges
+                badgesContainer.innerHTML = '<h3>Your Badges</h3>';
+
+                badgeCriteria.forEach(badge => {
+                    const badgeElement = document.createElement('i');
+                    badgeElement.className = `badge fas ${badge.icon} ${userBadges.includes(badge.name) ? 'unlocked' : ''}`;
+                    badgeElement.title = badge.name;
+                    badgesContainer.appendChild(badgeElement);
+                });
+            } catch (error) {
+                console.error('Error fetching badges:', error);
+            }
+        }
+
+        // Load badges on page load
+        document.addEventListener('DOMContentLoaded', loadBadges);
+    </script>
+</body>
+</html>
